@@ -8,7 +8,7 @@
 
 <h2>Welcome to Mobile & Internet Connection Provider Site</h2>
 <hr>
-<p>I am a <a href="${pageContext.request.contextPath}/customer">customer</a></p>
-<p>I am an <a href="${pageContext.request.contextPath}/employee">employee</a></p>
+<p>I am a <a href="${pageContext.request.contextPath}auth/customer">customer</a></p>
+<p>I am an <a href="${pageContext.request.contextPath}auth/employee">employee</a></p>
 </body>
 </html>
