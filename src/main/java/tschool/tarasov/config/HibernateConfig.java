@@ -51,6 +51,8 @@ public class HibernateConfig {
                 "hibernate.hbm2ddl.auto", "create-drop"); //create-drop validate
         hibernateProperties.setProperty(
                 "hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+        hibernateProperties.setProperty(
+                "hibernate.show_sql", "true"); //need to enable scripts
 
         return hibernateProperties;
     }
