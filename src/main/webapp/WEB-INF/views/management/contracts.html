@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customers list</title>
+</head>
+<hr>
+<body>
+
+<form th:method="POST" th:action="@{/management/contracts}" th:object="${contract}">
+    <label for="number">Enter new number: </label>
+    <input type="text" th:field="*{number}" id="number">
+
+    <br/>
+    <input type="submit" value="Create"/>
+</form>
+<hr>
+<table>
+    <tr th:each="contract: ${listContracts}">
+        <td th:text="${contract.id}"></td>
+        <td th:text="${contract.number}"></td>
+        <td th:text="${contract.customer.name}"></td>
+        <td th:text="${contract.customer.surname}"></td>
+        <td th:text="${contract.customer.passport}"></td>
+
+    </tr>
+</table>
+
+
+</body>
+</html>

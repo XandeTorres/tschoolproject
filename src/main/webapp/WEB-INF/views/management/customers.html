@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customers list</title>
+</head>
+<body>
+<h4>Enter customer's data</h4>
+<form th:method="POST" th:action="@{/management/customers}" th:object="${customer}">
+
+    <label for="name">Name: </label>
+    <input type="text" th:field="*{name}" id="name">
+
+    <label for="surname">Surname: </label>
+    <input type="text" th:field="*{surname}" id="surname">
+
+    <label for="email">e-mail: </label>
+    <input type="text" th:field="*{email}" id="email">
+
+    <label for="password">Password: </label>
+    <input type="text" th:field="*{password}" id="password">
+
+    <label for="birth">Date of birth: </label>
+    <input type="text" th:field="*{dateofbirth}" id="birth">
+
+    <br/>
+
+    <label for="passport">Passport ID: </label>
+    <input type="text" th:field="*{passport}" id="passport">
+
+    <label for="address">Address: </label>
+    <input type="text" th:field="*{address}" id="address">
+    <!--this input does not pass info to contractNumber attribute-->
+    <label for="contractNumber">New contract phone number: </label>
+    <input type="text" th:value="${contractNumber}" id="contractNumber"/>
+    <br/>
+
+    <input type="submit" value="Create"/>
+</form>
+<hr>
+
+<table>
+    <th>Customers</th>
+    <tr th:each="customer: ${listCustomers}">
+        <td th:text="${customer.id}"></td>
+
+        <td th:text="${customer.name}"></td>
+        <td th:text="${customer.surname}"></td>
+        <td th:text="${customer.email}"></td>
+
+        <td th:text="${customer.dateofbirth}"></td>
+        <td th:text="${customer.passport}"></td>
+        <td th:text="${customer.address}"></td>
+
+    </tr>
+</table>
+
+
+</body>
+</html>
