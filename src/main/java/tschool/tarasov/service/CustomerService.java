@@ -7,8 +7,6 @@ import tschool.tarasov.dao.CustomerDao;
 import tschool.tarasov.models.Contract;
 import tschool.tarasov.models.users.Customer;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -26,19 +24,9 @@ public class CustomerService {
 
     @Transactional
     public void createCustomer(Customer customer, String number) {
-        //new contract number addition
         Contract contract = contractService.getContractByNumber(number);
-        List<Contract> contractList = new ArrayList<>();
-        contractList.add(contract);
-        customer.setContractList(contractList);
-        // after customer entity being persisted to DB, it
-        // synchronized with DB info. It's need to get
-        // primary key and set it to contract to refer at customer
+        customer.addContract(contract);
         customerDao.persistCustomer(customer);
-        contract.setCustomer(customer);
-        contractService.updateContract(contract);
-
-
     }
 
     @Transactional
