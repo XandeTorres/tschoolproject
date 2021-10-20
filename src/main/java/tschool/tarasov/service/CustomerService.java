@@ -31,8 +31,10 @@ public class CustomerService {
         List<Contract> contractList = new ArrayList<>();
         contractList.add(contract);
         customer.setContractList(contractList);
-
-        Customer savedCustomer = customerDao.persistCustomer(customer);
+        // after customer entity being persisted to DB, it
+        // synchronized with DB info. It's need to get
+        // primary key and set it to contract to refer at customer
+        customerDao.persistCustomer(customer);
         contract.setCustomer(customer);
         contractService.updateContract(contract);
 
