@@ -9,11 +9,7 @@ import tschool.tarasov.models.users.Customer;
 import tschool.tarasov.service.ContractService;
 import tschool.tarasov.service.CustomerService;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.*;
+
 
 @Controller
 @RequestMapping("/management")
@@ -36,13 +32,6 @@ public class ManagementController {
         return "management/contracts";
     }
 
-/*
-    @GetMapping("/new")
-    public String newContract(Model model) {
-        model.addAttribute("contract", new Contract());
-        return "contracts/new";
-    }
-*/
     @PostMapping("/contracts")
     public String createContract(@ModelAttribute("contract") Contract contract) {
         contractService.createContract(contract);
@@ -57,31 +46,20 @@ public class ManagementController {
     @GetMapping(value = "customers")
     public String listCustomers(Model model){
         model.addAttribute("customer", new Customer());
-        model.addAttribute("contract", new Contract());
-        model.addAttribute("contractNumber", new String());
         model.addAttribute("listCustomers", this.customerService.listCustomers());
 
         return "management/customers";
     }
 
     @PostMapping("/customers")
-    public String createCustomer(@ModelAttribute("customer") Customer customer,
-                                 @ModelAttribute("contractNumber") String number
-                                 ) {
-
-//        Contract contract = contractService.getContractByNumber(number);
-//        customer.setContractList(new ArrayList<Contract>(Arrays.asList(contract)));
-
-        //List<Contract> contractList = (ArrayList<Contract>) contractService.listContracts();
-        //for (Contract contract : contractList){
-        //    if (number == contract.getNumber()){
-        //        customer.setContractList(new ArrayList<Contract>(Arrays.asList(contract)));
-        //    }
-        //}
-
-        customerService.createCustomer(customer, number);
+    public String sendCustomer(@ModelAttribute("customer") Customer customer, @RequestParam("contractNumber") String contractNumber) {
+        customerService.createCustomer(customer, contractNumber);
 
         return "redirect:/management/customers";
     }
+
+
+
+
 
 }
