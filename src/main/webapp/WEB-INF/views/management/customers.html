@@ -19,28 +19,28 @@
 
     <label for="password">Password: </label>
     <input type="text" th:field="*{password}" id="password">
+    <br/>
 
     <label for="birth">Date of birth: </label>
     <input type="text" th:field="*{dateofbirth}" id="birth">
-
-    <br/>
 
     <label for="passport">Passport ID: </label>
     <input type="text" th:field="*{passport}" id="passport">
 
     <label for="address">Address: </label>
     <input type="text" th:field="*{address}" id="address">
-    <!--this input does not pass info to contractNumber attribute-->
+
     <label for="contractNumber">New contract phone number: </label>
-    <input type="text" th:value="${contractNumber}" id="contractNumber"/>
+    <input name="contractNumber" type="text" id="contractNumber"/>
+
     <br/>
 
     <input type="submit" value="Create"/>
 </form>
 <hr>
 
-<table>
-    <th>Customers</th>
+<table border="1">
+    <caption>Customers</caption>
     <tr th:each="customer: ${listCustomers}">
         <td th:text="${customer.id}"></td>
 
@@ -51,7 +51,6 @@
         <td th:text="${customer.dateofbirth}"></td>
         <td th:text="${customer.passport}"></td>
         <td th:text="${customer.address}"></td>
-
     </tr>
 </table>
 
