@@ -24,6 +24,10 @@ public class ContractDao {
         Session session = this.sessionFactory.getCurrentSession();
         session.persist(contract);
     }
+    public void updateContract(Contract contract) {
+        Session session = this.sessionFactory.getCurrentSession();
+        session.update(contract);
+    }
 
     public Contract getContractById(Long id) {
         Session session = this.sessionFactory.getCurrentSession();
