@@ -1,10 +1,10 @@
 package tschool.tarasov.models.users;
 
-import org.hibernate.annotations.Cache;
 import tschool.tarasov.models.Contract;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -56,6 +56,12 @@ public class Customer extends User {
 
     public void setContractList(List<Contract> contractList) {
         this.contractList = contractList;
+    }
+
+    public void addContract(Contract contract) {
+        contract.setCustomer(this);
+        contractList = new ArrayList<>();
+        contractList.add(contract);
     }
 
 
