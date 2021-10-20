@@ -25,6 +25,11 @@ public class ContractService {
     }
 
     @Transactional
+    public void updateContract(Contract contract) {
+        this.contractDao.updateContract(contract);
+    }
+
+    @Transactional
     public Contract getContractById(Long id) {
         return this.contractDao.getContractById(id);
     }
