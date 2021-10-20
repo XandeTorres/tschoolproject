@@ -26,11 +26,17 @@ public class CustomerService {
 
     @Transactional
     public void createCustomer(Customer customer, String number) {
-        // new contract number addition
+        //new contract number addition
         Contract contract = contractService.getContractByNumber(number);
-        customer.setContractList(new ArrayList<>(Collections.singletonList(contract)));
+        List<Contract> contractList = new ArrayList<>();
+        contractList.add(contract);
+        customer.setContractList(contractList);
 
-        this.customerDao.createCustomer(customer);
+        Customer savedCustomer = customerDao.persistCustomer(customer);
+        contract.setCustomer(customer);
+        contractService.updateContract(contract);
+
+
     }
 
     @Transactional
