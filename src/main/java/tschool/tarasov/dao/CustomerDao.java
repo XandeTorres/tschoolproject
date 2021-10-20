@@ -28,6 +28,12 @@ public class CustomerDao {
         //logger.info("Customer was saved to DB successfully" + customer.getPassport());
 
     }
+    public Customer persistCustomer(Customer customer) {
+        Session session = this.sessionFactory.getCurrentSession();
+        session.persist(customer);
+        return customer;
+    }
+
 
     public void updateCustomer(Customer customer) {
         Session session = this.sessionFactory.getCurrentSession();
