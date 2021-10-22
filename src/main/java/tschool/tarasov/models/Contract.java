@@ -3,6 +3,7 @@ package tschool.tarasov.models;
 import tschool.tarasov.models.users.Customer;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "contracts")
@@ -15,14 +16,23 @@ public class Contract {
     @Column(name = "number")
     private String number;
 
-
     @ManyToOne()
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 
+    @ManyToOne
+    @JoinColumn(name = "tariff_id", referencedColumnName = "id")
+    private Tariff tariff;
 
-    public Contract() {
-    }
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "contract_option",
+            joinColumns = @JoinColumn(name = "contract_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "option_id", referencedColumnName = "id"))
+    private List<Option> chosenOptionList;
+
+
+
+    public Contract() { }
 
     public Long getId() {
         return id;
@@ -46,5 +56,13 @@ public class Contract {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public Tariff getTariff() {
+        return tariff;
+    }
+
+    public void setTariff(Tariff tariff) {
+        this.tariff = tariff;
     }
 }
