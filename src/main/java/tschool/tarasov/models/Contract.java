@@ -30,10 +30,6 @@ public class Contract {
             inverseJoinColumns = @JoinColumn(name = "option_id", referencedColumnName = "id"))
     private List<Option> chosenOptionList;
 
-
-
-    public Contract() { }
-
     public Long getId() {
         return id;
     }
