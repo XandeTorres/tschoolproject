@@ -67,4 +67,19 @@ public class Option {
         this.connectionCost = connectionCost;
     }
 
+    public List<Tariff> getTariffList() {
+        return tariffList;
+    }
+
+    public void setTariffList(List<Tariff> tariffList) {
+        this.tariffList = tariffList;
+    }
+
+    public List<Contract> getContractList() {
+        return contractList;
+    }
+
+    public void setContractList(List<Contract> contractList) {
+        this.contractList = contractList;
+    }
 }

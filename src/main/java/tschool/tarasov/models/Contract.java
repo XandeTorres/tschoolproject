@@ -61,4 +61,12 @@ public class Contract {
     public void setTariff(Tariff tariff) {
         this.tariff = tariff;
     }
+
+    public List<Option> getChosenOptionList() {
+        return chosenOptionList;
+    }
+
+    public void setChosenOptionList(List<Option> chosenOptionList) {
+        this.chosenOptionList = chosenOptionList;
+    }
 }
