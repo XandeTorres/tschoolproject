@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tariff settings</title>
+</head>
+<body>
+    <h4>Set up the tariff</h4>
+    <form method="post" th:action="@{/management/tariffs}" th:object="${tariff}">
+        <input name="id" th:field="*{id}" type="hidden">
+
+        <label for="name">Name</label>
+        <input id="name" name="name" th:field="*{name}" type="text">
+
+        <br>
+        <label for="price">Price</label>
+        <input id="price" name="price" th:field="*{price}" type="text">
+
+        <br>
+        <label for="options">Select options</label>
+        <div th:each="option : ${listOptions}" >
+            <input type="checkbox" id="options" name="options" th:value="${option.id}"/>
+            <label th:text="${option.name}"></label>
+            <label th:text="${option.price}"></label>
+            <label th:text="${option.connectionCost}"></label>
+        </div>
+        <br>
+        <input type="submit" value="Create"/>
+    </form>
+
+    <table border="1">
+        <caption>Tariffs</caption>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Options</th>
+        </tr>
+        <tr th:each="tariff: ${listTariffs}">
+            <td th:text="${tariff.id}"></td>
+            <td th:text="${tariff.name}"></td>
+            <td th:text="${tariff.price}"></td>
+            <td th:each="option_nes: ${tariff.optionList}" th:text="${option_nes}" ></td>
+            <!--<td>
+                <table>
+                    <tr th:each="option: ${tariff.optionList}">
+                        <td th:text="${option.name}"></td>
+                    </tr>
+                </table>
+            </td>-->
+        </tr>
+    </table>
+
+    <table border="1">
+        <caption>Options of tariffs</caption>
+        <tr>
+            <th scope="col" th:each="tariff: ${listTariffs}" th:text="${tariff.name}"></th>
+        </tr>
+        <tr>
+            <td>
+                <table>
+                    <tr th:each="option: ${tariff.optionList}">
+                        <td th:text="${option.name}"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+
+</body>
+</html>
