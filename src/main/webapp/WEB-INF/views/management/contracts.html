@@ -11,21 +11,63 @@
     <label for="number">Enter new number: </label>
     <input type="text" th:field="*{number}" id="number">
 
+    <table border="1">
+        <caption>Tariffs</caption>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Options</th>
+        </tr>
+        <tr th:each="tariff: ${listTariffs}">
+            <td>
+                <input type="radio" id="chosenTariff" name="chosenTariff" th:value="${tariff.id}">
+            </td>
+            <td th:text="${tariff.id}"></td>
+            <td th:text="${tariff.name}"></td>
+            <td th:text="${tariff.price}"></td>
+            <td>
+                <table border="1">
+                    <tr th:each="option: ${tariff.optionList}">
+                        <td th:text="${option.name}"></td>
+                        <td><input type="checkbox" id="chosenIncludedOptions"
+                                   name="chosenIncludedOptions" th:value="${option.id}"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
     <br/>
     <input type="submit" value="Create"/>
 </form>
 <hr>
-<table>
+<table border="1">
+    <caption>Contracts</caption>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Number</th>
+        <th scope="col">Tariff</th>
+        <th scope="col">Options</th>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Passport</th>
+    </tr>
     <tr th:each="contract: ${listContracts}">
         <td th:text="${contract.id}"></td>
         <td th:text="${contract.number}"></td>
+        <td th:text="${contract.tariff.name}"></td>
+        <td>
+            <table border="1">
+                <tr th:each="option: ${contract.tariff.optionList}">
+                    <td th:text="${option.name}"></td>
+                </tr>
+            </table>
+        </td>
         <td th:text="${contract.customer.name}"></td>
         <td th:text="${contract.customer.surname}"></td>
         <td th:text="${contract.customer.passport}"></td>
-
     </tr>
 </table>
-
-
 </body>
 </html>

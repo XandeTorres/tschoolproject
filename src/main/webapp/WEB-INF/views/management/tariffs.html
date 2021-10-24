@@ -11,7 +11,6 @@
 
         <label for="name">Name</label>
         <input id="name" name="name" th:field="*{name}" type="text">
-
         <br>
         <label for="price">Price</label>
         <input id="price" name="price" th:field="*{price}" type="text">
@@ -40,33 +39,15 @@
             <td th:text="${tariff.id}"></td>
             <td th:text="${tariff.name}"></td>
             <td th:text="${tariff.price}"></td>
-            <td th:each="option_nes: ${tariff.optionList}" th:text="${option_nes}" ></td>
-            <!--<td>
-                <table>
-                    <tr th:each="option: ${tariff.optionList}">
-                        <td th:text="${option.name}"></td>
-                    </tr>
-                </table>
-            </td>-->
-        </tr>
-    </table>
-
-    <table border="1">
-        <caption>Options of tariffs</caption>
-        <tr>
-            <th scope="col" th:each="tariff: ${listTariffs}" th:text="${tariff.name}"></th>
-        </tr>
-        <tr>
             <td>
-                <table>
-                    <tr th:each="option: ${tariff.optionList}">
-                        <td th:text="${option.name}"></td>
-                    </tr>
+                <table border="1">
+                  <tr th:each="option: ${tariff.optionList}">
+                      <td th:text="${option.name}"></td>
+                  </tr>
                 </table>
             </td>
         </tr>
     </table>
-
 
 </body>
 </html>
