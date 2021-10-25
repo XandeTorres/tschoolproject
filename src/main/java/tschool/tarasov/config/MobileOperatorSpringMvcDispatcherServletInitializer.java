@@ -1,5 +1,8 @@
 package tschool.tarasov.config;
 
+import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -34,6 +37,17 @@ public class MobileOperatorSpringMvcDispatcherServletInitializer extends Abstrac
      */
     @Override
     public void onStartup(ServletContext aServletContext) throws ServletException {
+        /**
+         *  Security integration to project
+         */
+//        AnnotationConfigWebApplicationContext root = new AnnotationConfigWebApplicationContext();
+//        root.register(SecurityConfig.class);
+//        aServletContext.addListener(new ContextLoaderListener(root));
+//
+//        aServletContext.addFilter("securityFilter", new DelegatingFilterProxy("springSecurityFilterChain"))
+//                .addMappingForUrlPatterns(null, false, "/*");
+
+
         super.onStartup(aServletContext);
         registerHiddenFieldFilter(aServletContext);
     }
