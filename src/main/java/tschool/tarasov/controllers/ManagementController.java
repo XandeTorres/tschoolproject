@@ -13,7 +13,6 @@ import tschool.tarasov.service.CustomerService;
 import tschool.tarasov.service.OptionService;
 import tschool.tarasov.service.TariffService;
 
-import java.util.Collections;
 
 @Controller
 @RequestMapping("/management")
@@ -80,6 +79,7 @@ public class ManagementController {
         model.addAttribute("contract", new Contract());
         model.addAttribute("listContracts", contractService.listContracts());
         model.addAttribute("listTariffs", tariffService.getTariffs());
+        model.addAttribute("optionList", optionService.getOptions());
 
         return "management/contracts";
     }

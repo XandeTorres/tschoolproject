@@ -1,10 +1,12 @@
 package tschool.tarasov.service;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tschool.tarasov.dao.OptionDao;
 import tschool.tarasov.models.Option;
+import tschool.tarasov.models.Tariff;
 
 import java.util.List;
 
@@ -34,7 +36,13 @@ public class OptionService {
 
     @Transactional
     public List<Option> getOptions() {
-        return optionDao.getOptions();
+        List<Option> listOption =optionDao.getOptions();
+        for (Option option: listOption) {
+            Hibernate.initialize(option.getTariffList());
+            Hibernate.initialize(option.getContractList());
+        }
+
+        return listOption;
     }
 
 }

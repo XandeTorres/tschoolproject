@@ -61,7 +61,7 @@
             <td th:text="${contract.tariff.name}"></td>
             <td>
                 <table border="1">
-                    <tr th:each="option: ${contract.tariff.optionList}">
+                    <tr th:each="option: ${contract.chosenOptionList}">
                         <td th:text="${option.name}"></td>
                     </tr>
                 </table>

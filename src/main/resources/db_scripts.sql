@@ -34,6 +34,11 @@ CREATE TABLE contracts (
 -- set manytoone as a owning side as recommended practice
 ALTER TABLE contracts ADD customer_id BIGINT REFERENCES customers(id);
 
+CREATE TABLE roles (
+                           id bigserial not null primary key,
+                           role varchar(50)
+);
+
 -- auto-generated definition
 create sequence hibernate_sequence;
 alter sequence hibernate_sequence owner to postgres;

@@ -82,4 +82,5 @@ public class Option {
     public void setContractList(List<Contract> contractList) {
         this.contractList = contractList;
     }
+
 }
