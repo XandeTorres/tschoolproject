@@ -5,6 +5,8 @@
     <title>Tariff settings</title>
 </head>
 <body>
+    <p> <a href="/auth/employee">Main menu</a></p>
+    <p> <a href="/management/contracts">Contracts page</a></p>
     <h4>Set up the tariff</h4>
     <form method="post" th:action="@{/management/tariffs}" th:object="${tariff}">
         <input name="id" th:field="*{id}" type="hidden">
